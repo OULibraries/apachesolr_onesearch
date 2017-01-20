@@ -1,0 +1,8 @@
+name = Apache Solr OneSearch Config
+description = Provides setup for Drupal search targets
+core = 7.x
+package = OneSearch
+dependencies[] = apachesolr:apachesolr
+dependencies[] = apachesolr_multisitesearch:apachesolr_multisitesearch
+dependencies[] = apachesolr_user:apachesolr_user
+
