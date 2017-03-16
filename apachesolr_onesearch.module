@@ -14,7 +14,7 @@ function apachesolr_onesearch_apachesolr_index_document_build_user($document, $e
   }
   catch (EntityMetadataWrapperException $e) {
     watchdog(
-      'MODULE_NAME',
+      'apachesolr_onesearch',
       'EntityMetadataWrapper exception in %function() <pre>@trace</pre>',
       array('%function' => __FUNCTION__, '@trace' => $e->getTraceAsString()),
       WATCHDOG_ERROR
@@ -35,7 +35,7 @@ function apachesolr_onesearch_apachesolr_user_exclude($entity_id,  $row, $env_id
   }
   catch (EntityMetadataWrapperException $e) {
     watchdog(
-      'MODULE_NAME',
+      'apachesolr_onesearch',
       'EntityMetadataWrapper exception in %function() <pre>@trace</pre>',
       array('%function' => __FUNCTION__, '@trace' => $e->getTraceAsString()),
       WATCHDOG_ERROR
