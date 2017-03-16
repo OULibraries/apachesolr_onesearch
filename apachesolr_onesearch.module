@@ -1,1 +1,44 @@
 <?php
+
+/*
+ * Implements hook_apachesolr_index_document_build_ENTITY_TYPE
+ */
+function apachesolr_onesearch_apachesolr_index_document_build_user($document, $entity) {
+  try {
+    # Add profile picture uri when indexing users
+    $my_user = entity_metadata_wrapper('user', $entity);
+    $pic_uri = file_create_url( $my_user->value()->picture->uri);
+    if("" != $pic_uri) {
+      $document->setMultiValue('sm_picture', $pic_uri);
+    }
+  }
+  catch (EntityMetadataWrapperException $e) {
+    watchdog(
+      'MODULE_NAME',
+      'EntityMetadataWrapper exception in %function() <pre>@trace</pre>',
+      array('%function' => __FUNCTION__, '@trace' => $e->getTraceAsString()),
+      WATCHDOG_ERROR
+    );
+  }
+}
+
+/*
+ * Implements hook_apachesolr_ENTITY_TYPE_exclude
+ */
+function apachesolr_onesearch_apachesolr_user_exclude($entity_id,  $row, $env_id) {
+  try {
+    # Filter out users that don't have a title
+    $my_user = entity_metadata_wrapper('user', $entity_id);
+    $my_title = $my_user->field_title[0]->value() ;
+    $exclude = ! isset($my_title);
+    return $exclude;
+  }
+  catch (EntityMetadataWrapperException $e) {
+    watchdog(
+      'MODULE_NAME',
+      'EntityMetadataWrapper exception in %function() <pre>@trace</pre>',
+      array('%function' => __FUNCTION__, '@trace' => $e->getTraceAsString()),
+      WATCHDOG_ERROR
+    );
+  }
+}
