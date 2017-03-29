@@ -9,7 +9,7 @@ function apachesolr_onesearch_apachesolr_index_document_build_user($document, $e
     $my_user = entity_metadata_wrapper('user', $entity);
     $pic_uri = file_create_url( $my_user->value()->picture->uri);
     if("" != $pic_uri) {
-      $document->setMultiValue('sm_picture', $pic_uri);
+      $document->addField('ss_picture', $pic_uri);
     }
   }
   catch (EntityMetadataWrapperException $e) {
