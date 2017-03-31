@@ -42,3 +42,46 @@ function apachesolr_onesearch_apachesolr_user_exclude($entity_id,  $row, $env_id
     );
   }
 }
+
+/**
+ * Implements hook_block_info().
+ *
+ * This hook declares what blocks are provided by the module.
+ */
+function apachesolr_onesearch_block_info(){
+    $blocks = array();
+    $blocks['onesearch_search'] = array(
+        'info' => t('One Search'),
+    );
+    return $blocks;
+}
+
+
+/**
+ * Implements hook_block_view().
+ *
+ * This hook generates the contents of the blocks themselves.
+ */
+function apachesolr_onesearch_block_view($delta=''){
+    switch ($delta) {
+      case 'onesearch_search':
+        $variables = array();
+        $block = array();
+        $block['subject'] = "Discover!";
+        $block['content'] = theme('onesearch_search', $variables);
+        break;
+    }
+    return $block;
+}
+
+/**
+ * Implementation of hook_theme
+ */
+function apachesolr_onesearch_theme() {
+  return array(
+    'onesearch_search' => array(
+      'template' => 'templates/onesearch-search',
+      'variables' => array(),
+    ),
+  );
+}
