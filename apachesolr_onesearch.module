@@ -65,7 +65,9 @@ function apachesolr_onesearch_block_info(){
 function apachesolr_onesearch_block_view($delta=''){
     switch ($delta) {
       case 'onesearch_search':
-        $variables = array();
+        $variables = array(
+          "formurl" => variable_get('apachesolr_onesearch_formurl', "")
+        );
         $block = array();
         $block['subject'] = "Discover!";
         $block['content'] = theme('onesearch_search', $variables);
@@ -84,4 +86,39 @@ function apachesolr_onesearch_theme() {
       'variables' => array(),
     ),
   );
+}
+
+/**
+ * Implementation of hook_menu
+ */
+function apachesolr_onesearch_menu(){
+
+  /* proxy settings */
+  $items['admin/config/search/onesearch_search']
+    = array(
+    'title' => 'One Search search block settings',
+    'description' => 'Configure the One Search search block',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('apachesolr_onesearch_settings'),
+    'access arguments' => array('administer onesearch settings'),
+  );
+
+  return $items;
+}
+
+/**
+ * Callback to define define settings form.
+ */
+function apachesolr_onesearch_settings() {
+
+  $form = array();
+
+  $form['apachesolr_onesearch_formurl'] = array(
+    '#type' => 'textfield',
+    '#title' => t('One Search Form Url'),
+    '#default_value' => variable_get('apachesolr_onesearch_formurl', "https://search.libraries.ou.edu"),
+    '#description' => t("The URI for One Search"),
+    '#required' => TRUE,
+  );
+  return system_settings_form($form);
 }

@@ -1,8 +1,8 @@
 <?php ?>
-<form name="searchForm" role="search" method="get" action="https://search.webdev.lib.ou.edu" enctype="application/x-www-form-urlencoded; charset=utf-8" target="_self" >
+<form name="searchForm" role="search" method="get" action="<?php print $formurl; ?>" enctype="application/x-www-form-urlencoded; charset=utf-8" target="_self" >
 
     <div class="container-fluid">
-	<div class="row">
+    <div class="row">
         <div class="col-md-10 col-sm-9 col-xs-9" style="padding-right:5px">
             <input class="form-control form-text" type="text" name="onesearch" />
         </div>
@@ -10,6 +10,6 @@
             <button class="btn btn-default form-submit btn-primary" value="Search" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
         </div>
     </div>
-	</div>
+    </div>
 
 </form>
