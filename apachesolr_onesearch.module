@@ -100,7 +100,7 @@ function apachesolr_onesearch_menu(){
     'description' => 'Configure the One Search search block',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('apachesolr_onesearch_settings'),
-    'access arguments' => array('administer onesearch settings'),
+    'access arguments' => array('administer search'),
   );
 
   return $items;
