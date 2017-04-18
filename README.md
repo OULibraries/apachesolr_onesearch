@@ -13,11 +13,11 @@ and should be installed on Drupal sites that need to use the block or feed conte
 ### Enable the module 
 Enable the module with `drush en -y apachesolr_onesearch`. Dependencies should be auto-enabled (and they're already in your make file, right?)
 
-### Confiugre the Discover block
+### Configure the Discover block
 Configure the One Search Discover block at `admin/config/search/onesearch_search`. Right now, this just needs to point to the URL of a copy of the OneSearch site
 
 
-### Configure Drupal to feed data to solr 
+### Configure Drupal to feed content to Solr 
 
 Configure a solr server at at `/admin/config/search/apachesolr/settings`
 
@@ -27,7 +27,7 @@ Configure a solr server at at `/admin/config/search/apachesolr/settings`
 Configure what content types to index at `/admin/config/search/apachesolr`. Make sure to select "user" as a thing to index.
 
 
-### (Re)Build a solr index
+### (Re)Build a Solr index
 
 The easiest way to get a site's work of content into Solr is with Drush. 
 
