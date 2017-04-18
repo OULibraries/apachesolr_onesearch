@@ -6,7 +6,7 @@ It includes:
 * the OneSearch discover block 
 * Customizations to Solr indexing
 
-and should be installed on Drupal sites that need to use the block or feed content into the OneSearch solr index. 
+and should be installed on Drupal sites that need to use the block or feed content into the OneSearch Solr index. 
 
 ## For Fresh Installs and Dev
 
@@ -19,10 +19,10 @@ Configure the One Search Discover block at `admin/config/search/onesearch_search
 
 ### Configure Drupal to feed content to Solr 
 
-Configure a solr server at at `/admin/config/search/apachesolr/settings`
+Configure a Solr server at at `/admin/config/search/apachesolr/settings`
 
-*  Configure solr server url. Include credentials in solr server uri, use `https`, don't specify an alternate port.  
-*  Check box for "mutlisite capable"
+*  Configure Solr server url. Include credentials in solr server uri, use `https`, don't specify an alternate port.  
+*  Check box for "multisite capable"
 
 Configure what content types to index at `/admin/config/search/apachesolr`. Make sure to select "user" as a thing to index.
 
