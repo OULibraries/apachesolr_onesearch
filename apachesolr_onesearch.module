@@ -29,8 +29,8 @@ function apachesolr_onesearch_apachesolr_user_exclude($entity_id,  $row, $env_id
   try {
     # Filter out users that don't have a title
     $my_user = entity_metadata_wrapper('user', $entity_id);
-    $my_title = $my_user->field_title[0]->value() ;
-    $exclude = ! isset($my_title);
+    $searchable = $my_user->field_searchable->value() ;
+    $exclude = ! isset($searchable);
     return $exclude;
   }
   catch (EntityMetadataWrapperException $e) {
