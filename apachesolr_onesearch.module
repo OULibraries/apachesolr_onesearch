@@ -23,14 +23,40 @@ function apachesolr_onesearch_apachesolr_index_document_build_user($document, $e
 }
 
 /*
+ * Implements hook_apachesolr_index_document_build_ENTITY_TYPE
+ */
+function apachesolr_onesearch_apachesolr_index_document_build_node($document, $entity) {
+  try {
+
+    $w = entity_metadata_wrapper('node', $entity);
+    $bundle = $w->getBundle();
+    switch($bundle){
+      case "eresources":
+        if(! $w->field_description) { break; }
+        $my_desc = $w->field_description->value();
+        if( empty( $my_desc)) { break; }
+        $document->addField('ss_field_description', $my_desc["value"] );
+    }
+  }
+  catch (EntityMetadataWrapperException $e) {
+    watchdog(
+      'apachesolr_onesearch',
+      'EntityMetadataWrapper exception in %function() <pre>@trace</pre>',
+      array('%function' => __FUNCTION__, '@trace' => $e->getTraceAsString()),
+      WATCHDOG_ERROR
+    );
+  }
+}
+
+/*
  * Implements hook_apachesolr_ENTITY_TYPE_exclude
  */
 function apachesolr_onesearch_apachesolr_user_exclude($entity_id,  $row, $env_id) {
   try {
     # Filter out users that don't have a title
     $my_user = entity_metadata_wrapper('user', $entity_id);
-    $my_title = $my_user->field_title[0]->value() ;
-    $exclude = ! isset($my_title);
+    $searchable = $my_user->field_searchable->value() ;
+    $exclude = ! isset($searchable);
     return $exclude;
   }
   catch (EntityMetadataWrapperException $e) {
