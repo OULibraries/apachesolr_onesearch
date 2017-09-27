@@ -4,10 +4,10 @@
     <div class="container-fluid">
     <div class="row">
         <div class="col-md-10 col-sm-9 col-xs-9" style="padding-right:5px">
-            <input class="form-control form-text" type="text" name="onesearch" />
+            <input class="form-control form-text" type="text" name="onesearch" aria-label="onesearch"/>
         </div>
         <div class="col-md-1 col-sm-2 col-xs-2">
-            <button class="btn btn-default form-submit btn-primary" value="Search" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+            <button class="btn btn-default form-submit btn-primary" value="Search" type="submit" aria-label="search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
         </div>
     </div>
     </div>
